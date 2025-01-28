@@ -14,8 +14,7 @@ session.verify = False  # Disable SSL verification for all requests made using t
 
 # Load environment variables
 load_dotenv(".env")
-# api_key = os.getenv("GEMINI_API_KEY")
-api_key="AIzaSyBwxUSGHaz8N_EetPwanQ9fFuw7jmEeqT4"
+api_key = os.getenv("GEMINI_API_KEY")
 
 # Function to extract text from PDFs
 def extract_text_from_pdf(pdf_path):
