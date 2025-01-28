@@ -55,6 +55,27 @@ def classify_changes(original_text, modified_text):
     return {"trivial_changes": trivial_changes, "non_trivial_changes": non_trivial_changes}
 
 # Flask API for listing changes
+@app.route('/')
+def home():
+    return "API Guide for dummies"+ "\n" + '''"http://127.0.0.1:5000/list-changes
+
+response= {
+  "list_of_changes": [
+    "Existing: 4.1 This agreement together with any documents referred to in it constitutes the entire agreement (and supersedes any previous written or oral agreement) between the parties related to the subject matter of this agreement. For the avoidance of doubt, any agreement between a member of the ION Group and a member of the Company\u2019s group remains in force and is unaffected by this agreement.  1.1 Each Receiving Party recognizes  that any breach of this agreement  could cause irreparable harm to the Disclosing Party and that monetary damages would be inadequate to compensate the Disclosing Party for such breach . changed to New: 4.1 This agreement together with any documents referred to in it constitutes the entire agreement (and supersedes any previous written or oral agreement) between the parties related to the subject matter of this agreement. For the avoidance of doubt, any agreement between a member of the ION Group and a member of the Company\u2019s group remains in force and is unaffected by this agreement.  1.1 Each Receiving Party recognizes that any breach of this agreement could cause harm to the Disclosing Party, and the Disclosing Party's liability will be limited to monetary damages only.\n"
+  ]
+}
+
+http://127.0.0.1:5000/classify-changes
+{
+  "non_trivial_changes": [
+    " Section 4.1 now limits the Disclosing Party's liability to monetary damages only. ",
+    " The governing law was changed to Irish law.\n"
+  ],
+  "trivial_changes": [
+    " Minor formatting differences (e.g., spacing, hyphenation) ",
+    "  \"irreparable harm\" changed to \"harm\" in section 4.1 "
+  ]
+}"'''
 @app.route('/list-changes', methods=['GET'])
 def list_changes():
     original_pdf = 'original_pdf.pdf'  # Path to the original NDA PDF
